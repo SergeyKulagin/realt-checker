@@ -38,11 +38,11 @@ public class RealtcheckerApplication implements CommandLineRunner {
   public void run(String... strings) throws Exception {
     final Context context = new Context();
     context.setDate(new Date());
-    /*final List<Apartment> apartmentList = aparmentsLoader.load();
+    final List<Apartment> apartmentList = aparmentsLoader.load();
     context.setApartments(apartmentList);
     apartmentsSorter.sort(context);
     apartmentsStorer.store(context);
-    apartmentsPrettyPrinter.print(context);*/
+    apartmentsPrettyPrinter.print(context);
     apartmentsNotifier.notify(context);
 
     springContext.close();

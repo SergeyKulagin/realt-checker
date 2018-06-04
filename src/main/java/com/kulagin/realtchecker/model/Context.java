@@ -9,4 +9,5 @@ import java.util.List;
 public class Context {
   private Date date;
   private List<Apartment> apartments;
+  private String htmlReportPath;
 }

@@ -20,19 +20,14 @@ spring:
   mail:
     debug: true
     host: smtp.gmail.com
-    port: 587
+    port: 465
     properties:
       mail:
         smtp:
-          timeout: 10000
-          connectiontimeout: 10000
-          writetimeout: 10000
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
           auth: true
-          starttls:
-            enable: true
-            required: true
-          ssl:
-            trust: smtp.gmail.com
-    username: kulaginsp@gmail.com
+    username: kulaginsp
     password: ****
     to: kulaginsp@gmail.com

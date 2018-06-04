@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,9 @@ public class ApartmentsPrettyPrinter {
     MustacheFactory mf = new DefaultMustacheFactory();
     Mustache mustache = mf.compile("pretty_print.mustache");
     try {
-      mustache.execute(new FileWriter(fileUtil.getFilePath(context.getDate(), "html").toFile()), scope);
+      final Path path = fileUtil.getFilePath(context.getDate(), "html");
+      context.setHtmlReportPath(path.toString());
+      mustache.execute(new FileWriter(path.toFile()), scope);
     } catch (IOException e) {
       e.printStackTrace();
     }
