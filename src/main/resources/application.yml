@@ -16,3 +16,23 @@ checker:
     currency: usd
   store:
     path: .
+spring:
+  mail:
+    debug: true
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          timeout: 10000
+          connectiontimeout: 10000
+          writetimeout: 10000
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            trust: smtp.gmail.com
+    username: kulaginsp@gmail.com
+    password: ****
+    to: kulaginsp@gmail.com

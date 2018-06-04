@@ -5,12 +5,12 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.kulagin.realtchecker.model.Apartment;
 import com.kulagin.realtchecker.model.ApartmentPretty;
+import com.kulagin.realtchecker.model.Context;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,8 @@ public class ApartmentsPrettyPrinter {
     this.fileUtil = fileUtil;
   }
 
-  public void print(List<Apartment> apartmentList, Date date) {
+  public void print(Context context) {
+    List<Apartment> apartmentList = context.getApartments();
     log.info("Make a pretty print");
     List<ApartmentPretty> apartmentPretties = apartmentList.stream().map((apartment -> ApartmentPretty
         .builder()
@@ -40,7 +41,7 @@ public class ApartmentsPrettyPrinter {
     MustacheFactory mf = new DefaultMustacheFactory();
     Mustache mustache = mf.compile("pretty_print.mustache");
     try {
-      mustache.execute(new FileWriter(fileUtil.getFilePath(date, "html").toFile()), scope);
+      mustache.execute(new FileWriter(fileUtil.getFilePath(context.getDate(), "html").toFile()), scope);
     } catch (IOException e) {
       e.printStackTrace();
     }

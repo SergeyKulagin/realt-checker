@@ -54,7 +54,8 @@ public class Apartment {
     @JsonProperty("created_at")
     public String createdAt;
     @JsonProperty("last_time_up")
-    public String lastTimeUp;
+    @JsonIgnore
+    public volatile String lastTimeUp;
     @JsonProperty("up_available_in")
     @JsonIgnore
     public volatile Integer upAvailableIn;

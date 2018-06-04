@@ -1,10 +1,8 @@
 package com.kulagin;
 
-import com.kulagin.realtchecker.ApartmentsLoader;
-import com.kulagin.realtchecker.ApartmentsPrettyPrinter;
-import com.kulagin.realtchecker.ApartmentsSorter;
-import com.kulagin.realtchecker.ApartmentsStorer;
+import com.kulagin.realtchecker.*;
 import com.kulagin.realtchecker.model.Apartment;
+import com.kulagin.realtchecker.model.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +17,7 @@ import java.util.List;
 public class RealtcheckerApplication implements CommandLineRunner {
 
   @Autowired
-  ConfigurableApplicationContext context;
+  ConfigurableApplicationContext springContext;
 
   @Autowired
   private ApartmentsLoader aparmentsLoader;
@@ -29,6 +27,8 @@ public class RealtcheckerApplication implements CommandLineRunner {
   private ApartmentsStorer apartmentsStorer;
   @Autowired
   private ApartmentsPrettyPrinter apartmentsPrettyPrinter;
+  @Autowired
+  private ApartmentsNotifier apartmentsNotifier;
 
   public static void main(String[] args) {
     SpringApplication.run(RealtcheckerApplication.class, args);
@@ -36,12 +36,15 @@ public class RealtcheckerApplication implements CommandLineRunner {
 
   @Override
   public void run(String... strings) throws Exception {
-    final Date date = new Date();
-    List<Apartment> apartmentList = aparmentsLoader.load();
-    apartmentsSorter.sort(apartmentList);
-    apartmentsStorer.store(apartmentList, date);
-    apartmentsPrettyPrinter.print(apartmentList, date);
+    final Context context = new Context();
+    context.setDate(new Date());
+    /*final List<Apartment> apartmentList = aparmentsLoader.load();
+    context.setApartments(apartmentList);
+    apartmentsSorter.sort(context);
+    apartmentsStorer.store(context);
+    apartmentsPrettyPrinter.print(context);*/
+    apartmentsNotifier.notify(context);
 
-    context.close();
+    springContext.close();
   }
 }
