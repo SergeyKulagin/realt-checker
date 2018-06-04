@@ -1,0 +1,16 @@
+checker:
+  query:
+    url: https://pk.api.onliner.by/search/apartments
+    boundsLbLatParamName: bounds[lb][lat]
+    boundsLbLongParamName: bounds[lb][long]
+    boundsRtLatParamName: bounds[rt][lat]
+    boundsRtLongParamName: bounds[rt][long]
+    wallingParamName: walling[]
+    walling: brick
+    boundsLbLat: 53.779963673435276
+    boundsLbLong: 27.248840332031254
+    boundsRtLat: 54.01543502648378
+    boundsRtLong: 27.875747680664066
+    priceMin: 45250
+    priceMax: 60000
+    currency: usd
