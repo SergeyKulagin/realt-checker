@@ -31,7 +31,7 @@ public class RealtcheckerApplication implements CommandLineRunner {
   private ApartmentsPrettyPrinter apartmentsPrettyPrinter;
 
   public static void main(String[] args) {
-    ConfigurableApplicationContext context = SpringApplication.run(RealtcheckerApplication.class, args);
+    SpringApplication.run(RealtcheckerApplication.class, args);
   }
 
   @Override
