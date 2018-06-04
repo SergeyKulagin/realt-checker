@@ -12,4 +12,5 @@ public class ApartmentPretty {
   private String address;
   private String price;
   private String url;
+  private boolean lastFloor;
 }

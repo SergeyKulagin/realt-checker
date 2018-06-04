@@ -1,4 +1,21 @@
-<table style="table-layout: fixed; border: 1px solid darkgrey">
+<style>
+    .table {
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    .table, tr, td {
+        border: 1px solid darkgrey;
+    }
+    td {
+        padding: 0px 5px;
+    }
+    .last-floor {
+        color: red;
+    }
+</style>
+
+<table class="table">
     {{#a}}
     <tr>
         <td>
@@ -8,7 +25,12 @@
             {{price}}
         </td>
         <td>
-            {{url}}
+            <a href="{{url}}">{{url}}</a>
+        </td>
+        <td>
+            {{#lastFloor}}
+            <div class="last-floor">*</div>
+            {{/lastFloor}}
         </td>
     </tr>
     {{/a}}

@@ -2,6 +2,7 @@ package com.kulagin.realtchecker;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "checker.query")
 @Getter
 @Setter
+@ToString
 public class CheckerQueryConfiguration {
   private String boundsLbLatParamName;
   private String boundsLbLongParamName;

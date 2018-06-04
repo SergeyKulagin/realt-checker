@@ -36,10 +36,11 @@ public class RealtcheckerApplication implements CommandLineRunner {
 
   @Override
   public void run(String... strings) throws Exception {
+    final Date date = new Date();
     List<Apartment> apartmentList = aparmentsLoader.load();
     apartmentsSorter.sort(apartmentList);
-    apartmentsStorer.store(apartmentList);
-    apartmentsPrettyPrinter.print(apartmentList, new Date());
+    apartmentsStorer.store(apartmentList, date);
+    apartmentsPrettyPrinter.print(apartmentList, date);
 
     context.close();
   }
