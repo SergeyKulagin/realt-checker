@@ -14,3 +14,5 @@ checker:
     priceMin: 45250
     priceMax: 60000
     currency: usd
+  store:
+    path: .

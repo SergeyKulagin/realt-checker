@@ -1,9 +1,11 @@
 
 package com.kulagin.realtchecker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -24,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "url",
     "auction_bid"
 })
+@Getter
 public class Apartment {
 
     @JsonProperty("id")
@@ -53,7 +56,8 @@ public class Apartment {
     @JsonProperty("last_time_up")
     public String lastTimeUp;
     @JsonProperty("up_available_in")
-    public Integer upAvailableIn;
+    @JsonIgnore
+    public volatile Integer upAvailableIn;
     @JsonProperty("url")
     public String url;
     @JsonProperty("auction_bid")
