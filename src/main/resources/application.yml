@@ -15,7 +15,7 @@ checker:
     priceMax: 60000
     currency: usd
   store:
-    path: .
+    path: e:\projects\home\realtchecker\analysis
 spring:
   mail:
     debug: true
@@ -29,5 +29,10 @@ spring:
             class: javax.net.ssl.SSLSocketFactory
           auth: true
     username: kulaginsp
-    password: ****
+    password: ENC(gJtATA3b7wFTA7F5Kluyr9fjBFD/NFFWS27r5wNRLAw=)
     to: kulaginsp@gmail.com
+cron:
+  check-schedule: 0 0 8-22 * * ?
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
