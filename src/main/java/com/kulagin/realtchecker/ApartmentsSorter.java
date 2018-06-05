@@ -10,7 +10,7 @@ import java.util.Comparator;
 @Log4j2
 public class ApartmentsSorter {
   public void sort(Context context) {
-    log.info("Sort apartments");
+    log.info("Sort apartments.");
     context.getApartments().sort(Comparator.comparing((apartment -> apartment.getLocation().getAddress())));
   }
 }

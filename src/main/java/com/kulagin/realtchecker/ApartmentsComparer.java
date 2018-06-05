@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Log4j2
 public class ApartmentsComparer {
   public void compare(Context context) {
+    log.info("Compare old and new apartments lists");
     final List<Apartment> currentApartments = context.getApartments();
     final List<Apartment> previousApartments = loadPrevious(context);
     final Map<Integer, Apartment> previousApartmentsMap = previousApartments.stream().collect(Collectors.toMap((a -> a.getId()), apartment -> apartment));

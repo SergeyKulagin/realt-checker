@@ -29,14 +29,11 @@ public class ApartmentsStorer {
 
   public void store(Context context) {
     final List<Apartment> apartments = context.getApartments();
-    log.info("Storing apartments");
+    log.info("Storing apartments.");
     try {
-
       objectMapper.writeValue(fileUtil.getFilePath(context.getDate(), "json").toFile(), apartments);
     } catch (IOException e) {
-      log.error("Error while storing the attachments", e);
+      log.error("Error while storing the apartments.", e);
     }
   }
-
-
 }
