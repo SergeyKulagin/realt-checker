@@ -1,9 +1,22 @@
 Новые квартиры:
 {{#r.newlyCreatedApartments}}
- {{location.address}}     {{url}}
+  {{#location.address}}
+{{location.address}} {{url}}
+  {{/location.address}}
+  {{^location.address}}
+{{location.userAddress}} {{url}}
+  {{/location.address}}
 {{/r.newlyCreatedApartments}}
 
+
 Изменение цены:
-{{#r.changedApartmentsNew}}
- {{location.address}}  {{price.amount}} {{url}} {{r.changedApartmentsNew.@index.price.amount}}
-{{/r.changedApartmentsNew}}
+{{#r.changedApartments}}
+  {{#newApartment.location.address}}
+{{newApartment.location.address}}
+  {{/newApartment.location.address}}
+  {{^newApartment.location.address}}
+{{newApartment.location.userAddress}}
+  {{/newApartment.location.address}}
+{{previousApartment.price.amount}} => {{newApartment.price.amount}} {{newApartment.url}}
+
+{{/r.changedApartments}}

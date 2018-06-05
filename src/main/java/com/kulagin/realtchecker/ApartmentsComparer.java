@@ -24,23 +24,24 @@ public class ApartmentsComparer {
     final Map<Integer, Apartment> previousApartmentsMap = previousApartments.stream().collect(Collectors.toMap((a -> a.getId()), apartment -> apartment));
     CompareApartmentResult compareApartmentResult = new CompareApartmentResult();
     final List<Apartment> newlyCreatedApartments = new ArrayList<>();
-    final List<Apartment> changedApartmentsPrevious = new ArrayList<>();
-    final List<Apartment> changedApartmentsNew = new ArrayList<>();
+    final List<ApartmentsCompareItem> changedApartments = new ArrayList<>();
     for (Apartment currentApartment : currentApartments) {
       final Apartment previousApartment = previousApartmentsMap.get(currentApartment.getId());
       if (previousApartment == null) {
         newlyCreatedApartments.add(currentApartment);
       } else {
         if (previousApartment.getPrice().getAmount().compareTo(currentApartment.getPrice().getAmount()) != 0) {
-          changedApartmentsPrevious.add(previousApartment);
-          changedApartmentsNew.add(currentApartment);
+          final ApartmentsCompareItem apartmentsCompareItem = new ApartmentsCompareItem(
+              previousApartment,
+              currentApartment
+          );
+          changedApartments.add(apartmentsCompareItem);
         }
       }
     }
 
     compareApartmentResult.setNewlyCreatedApartments(newlyCreatedApartments);
-    compareApartmentResult.setChangedApartmentsPrevious(changedApartmentsPrevious);
-    compareApartmentResult.setChangedApartmentsNew(changedApartmentsNew);
+    compareApartmentResult.setChangedApartments(changedApartments);
     context.setCompareApartmentResult(compareApartmentResult);
   }
 
