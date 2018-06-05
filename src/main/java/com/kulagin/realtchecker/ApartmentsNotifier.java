@@ -24,15 +24,19 @@ public class ApartmentsNotifier {
   private String to;
 
   public void notify(Context context) {
-    if (context.getCompareApartmentResult().hasChanges()) {
-      log.info("Changes in the flats were detected => notify");
       try {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setFrom("sergey.realt.program@no-spam.com");
         helper.setTo(to);
         helper.setSubject("Realt program update");
-        helper.setText(printer.printNotificationBody(context));
+        if (context.getCompareApartmentResult().hasChanges()) {
+          log.info("Changes in the flats were detected => notify");
+          helper.setText(printer.printNotificationBody(context));
+        } else {
+          log.info("No changes were detected");
+          helper.setText("No changes were detected. Please check the report.");
+        }
         FileSystemResource file = new FileSystemResource(new File(context.getHtmlReportPath()));
         helper.addAttachment("Report.html", file);
         emailSender.send(message);
@@ -40,6 +44,5 @@ public class ApartmentsNotifier {
       } catch (MessagingException e) {
         e.printStackTrace();
       }
-    }
   }
 }

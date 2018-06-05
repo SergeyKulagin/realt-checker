@@ -15,8 +15,30 @@
     }
 </style>
 
+<h1>
+Квартиры (последний этаж)
+</h1>
 <table class="table">
-    {{#a}}
+{{#lastFloor}}
+<tr>
+    <td>
+        {{address}}
+    </td>
+    <td>
+        {{price}}
+    </td>
+    <td>
+        <a href="{{url}}" target="_blank">{{url}}</a>
+    </td>
+</tr>
+{{/lastFloor}}
+</table>
+
+<h1>
+Квартиры (все)
+</h1>
+<table class="table">
+{{#all}}
     <tr>
         <td>
             {{address}}
@@ -33,5 +55,5 @@
             {{/lastFloor}}
         </td>
     </tr>
-    {{/a}}
+{{/all}}
 </table>

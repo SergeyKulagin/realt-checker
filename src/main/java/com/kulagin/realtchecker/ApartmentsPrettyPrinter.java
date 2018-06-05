@@ -38,8 +38,11 @@ public class ApartmentsPrettyPrinter {
         .price(String.valueOf(apartment.getPrice().getAmount()))
         .lastFloor(apartment.getFloor() == apartment.getNumberOfFloors())
         .url(apartment.getUrl()).build())).collect(Collectors.toList());
+    List<ApartmentPretty> lastFloorOnly = apartmentPretties.stream().filter((apartmentPretty -> apartmentPretty.isLastFloor())).collect(Collectors.toList());
+
     Map<String, Object> scope = new HashMap<>();
-    scope.put("a", apartmentPretties);
+    scope.put("all", apartmentPretties);
+    scope.put("lastFloor", lastFloorOnly);
     MustacheFactory mf = new DefaultMustacheFactory();
     Mustache mustache = mf.compile("pretty_print.mustache");
     try {
