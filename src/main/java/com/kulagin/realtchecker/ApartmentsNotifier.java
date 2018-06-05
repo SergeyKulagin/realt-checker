@@ -30,11 +30,13 @@ public class ApartmentsNotifier {
       MimeMessageHelper helper = new MimeMessageHelper(message, true);
       helper.setFrom("sergey.realt.program@no-spam.com");
       helper.setTo(to);
-      helper.setSubject("Realt program update");
+
       if (context.getCompareApartmentResult().hasChanges()) {
+        helper.setSubject("[REALT CHANGES]");
         log.info("Changes in the flats were detected => notify about them");
         helper.setText(printer.printNotificationBody(context));
       } else {
+        helper.setSubject("[REPORT]");
         log.info("No changes were detected => notify withing the report only");
         helper.setText("No changes were detected. Please check the report.");
       }

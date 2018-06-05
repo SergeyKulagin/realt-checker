@@ -27,7 +27,7 @@ public class ApartmentsComparer {
     final List<Apartment> newlyCreatedApartments = new ArrayList<>();
     final List<ApartmentsCompareItem> changedApartments = new ArrayList<>();
     for (Apartment currentApartment : currentApartments) {
-      final Apartment previousApartment = previousApartmentsMap.get(currentApartment.getId());
+      final Apartment previousApartment = previousApartmentsMap.remove(currentApartment.getId());
       if (previousApartment == null) {
         newlyCreatedApartments.add(currentApartment);
       } else {
@@ -43,6 +43,7 @@ public class ApartmentsComparer {
 
     compareApartmentResult.setNewlyCreatedApartments(newlyCreatedApartments);
     compareApartmentResult.setChangedApartments(changedApartments);
+    compareApartmentResult.setDisappearedApartments(new ArrayList<>(previousApartmentsMap.values()));
     context.setCompareApartmentResult(compareApartmentResult);
   }
 

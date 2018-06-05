@@ -21,7 +21,7 @@ import java.util.List;
 public class RealtcheckerApplication implements CommandLineRunner{
 
   @Autowired
-  ConfigurableApplicationContext springContext;
+  private Environment environment;
 
   @Autowired
   private ApartmentInitialContextLoader contextLoader;
@@ -45,6 +45,7 @@ public class RealtcheckerApplication implements CommandLineRunner{
   @Override
   public void run(String... args) throws Exception {
     // run on start-up
+    log.info("Run the check job with the schedule {}", environment.getProperty("cron.check-schedule"));
     runCheck();
   }
 

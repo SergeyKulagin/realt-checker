@@ -10,11 +10,13 @@ import java.util.List;
 @Setter
 public class CompareApartmentResult {
   private List<Apartment> newlyCreatedApartments;
+  private List<Apartment> disappearedApartments;
   private List<ApartmentsCompareItem> changedApartments;
 
   public boolean hasChanges() {
     return
         newlyCreatedApartments.size() > 0 ||
-            changedApartments.size() > 0;
+            changedApartments.size() > 0 ||
+            disappearedApartments.size() > 0;
   }
 }

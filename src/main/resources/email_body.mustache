@@ -8,6 +8,16 @@
   {{/location.address}}
 {{/r.newlyCreatedApartments}}
 
+Исчезнувшие квартиры:
+{{#r.disappearedApartments}}
+  {{#location.address}}
+{{location.address}} {{url}}
+  {{/location.address}}
+  {{^location.address}}
+{{location.userAddress}} {{url}}
+  {{/location.address}}
+{{/r.disappearedApartments}}
+
 
 Изменение цены:
 {{#r.changedApartments}}
