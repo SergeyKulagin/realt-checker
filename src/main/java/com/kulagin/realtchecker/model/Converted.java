@@ -1,6 +1,7 @@
 
 package com.kulagin.realtchecker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -13,7 +14,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Converted {
 
     @JsonProperty("BYN")
-    public BYN bYN;
+    @JsonIgnore
+    public volatile BYN bYN;
     @JsonProperty("USD")
     public USD uSD;
 

@@ -29,6 +29,8 @@ public class RealtcheckerApplication implements CommandLineRunner {
   private ApartmentsPrettyPrinter apartmentsPrettyPrinter;
   @Autowired
   private ApartmentsNotifier apartmentsNotifier;
+  @Autowired
+  private ApartmentInitialContextLoader contextLoader;
 
   public static void main(String[] args) {
     SpringApplication.run(RealtcheckerApplication.class, args);
@@ -36,14 +38,13 @@ public class RealtcheckerApplication implements CommandLineRunner {
 
   @Override
   public void run(String... strings) throws Exception {
-    final Context context = new Context();
-    context.setDate(new Date());
+    final Context context = contextLoader.loadContext();
     final List<Apartment> apartmentList = aparmentsLoader.load();
     context.setApartments(apartmentList);
     apartmentsSorter.sort(context);
     apartmentsStorer.store(context);
     apartmentsPrettyPrinter.print(context);
-    apartmentsNotifier.notify(context);
+    //apartmentsNotifier.notify(context);
 
     springContext.close();
   }
