@@ -12,4 +12,6 @@ public class Context {
   private List<Apartment> apartments;
   private String htmlReportPath;
   private Path lastJsonReportPath;
+
+  private CompareApartmentResult compareApartmentResult;
 }

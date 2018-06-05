@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -19,6 +17,8 @@ public class RealtcheckerApplication implements CommandLineRunner {
   @Autowired
   ConfigurableApplicationContext springContext;
 
+  @Autowired
+  private ApartmentInitialContextLoader contextLoader;
   @Autowired
   private ApartmentsLoader aparmentsLoader;
   @Autowired
@@ -30,7 +30,7 @@ public class RealtcheckerApplication implements CommandLineRunner {
   @Autowired
   private ApartmentsNotifier apartmentsNotifier;
   @Autowired
-  private ApartmentInitialContextLoader contextLoader;
+  private ApartmentsComparer apartmentsComparer;
 
   public static void main(String[] args) {
     SpringApplication.run(RealtcheckerApplication.class, args);
@@ -43,8 +43,9 @@ public class RealtcheckerApplication implements CommandLineRunner {
     context.setApartments(apartmentList);
     apartmentsSorter.sort(context);
     apartmentsStorer.store(context);
-    apartmentsPrettyPrinter.print(context);
-    //apartmentsNotifier.notify(context);
+    apartmentsPrettyPrinter.printReport(context);
+    apartmentsComparer.compare(context);
+    apartmentsNotifier.notify(context);
 
     springContext.close();
   }

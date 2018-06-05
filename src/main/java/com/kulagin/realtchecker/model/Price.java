@@ -4,6 +4,7 @@ package com.kulagin.realtchecker.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -11,10 +12,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "currency",
     "converted"
 })
+@Getter
 public class Price {
 
     @JsonProperty("amount")
-    public String amount;
+    public Double amount;
     @JsonProperty("currency")
     public String currency;
     @JsonProperty("converted")

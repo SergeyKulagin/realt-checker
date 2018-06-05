@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
@@ -28,13 +29,13 @@ public class ApartmentsPrettyPrinter {
     this.fileUtil = fileUtil;
   }
 
-  public void print(Context context) {
+  public void printReport(Context context) {
     List<Apartment> apartmentList = context.getApartments();
     log.info("Make a pretty print");
     List<ApartmentPretty> apartmentPretties = apartmentList.stream().map((apartment -> ApartmentPretty
         .builder()
         .address(isEmpty(apartment.getLocation().getAddress())? apartment.getLocation().getUserAddress() : apartment.getLocation().getAddress())
-        .price(apartment.getPrice().amount)
+        .price(String.valueOf(apartment.getPrice().getAmount()))
         .lastFloor(apartment.getFloor() == apartment.getNumberOfFloors())
         .url(apartment.getUrl()).build())).collect(Collectors.toList());
     Map<String, Object> scope = new HashMap<>();
@@ -46,7 +47,18 @@ public class ApartmentsPrettyPrinter {
       context.setHtmlReportPath(path.toString());
       mustache.execute(new FileWriter(path.toFile()), scope);
     } catch (IOException e) {
-      e.printStackTrace();
+      log.error(e);
+      throw new RuntimeException(e);
     }
+  }
+
+  public String printNotificationBody(Context context) {
+    Map<String, Object> scope = new HashMap<>();
+    scope.put("r", context.getCompareApartmentResult());
+    MustacheFactory mf = new DefaultMustacheFactory();
+    Mustache mustache = mf.compile("email_body.mustache");
+    StringWriter sw = new StringWriter();
+    mustache.execute(sw, scope);
+    return sw.toString();
   }
 }

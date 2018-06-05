@@ -1,0 +1,9 @@
+Новые квартиры:
+{{#r.newlyCreatedApartments}}
+ {{location.address}}     {{url}}
+{{/r.newlyCreatedApartments}}
+
+Изменение цены:
+{{#r.changedApartmentsNew}}
+ {{location.address}}  {{price.amount}} {{url}} {{r.changedApartmentsNew.@index.price.amount}}
+{{/r.changedApartmentsNew}}
