@@ -1,6 +1,5 @@
-package com.kulagin.realtchecker;
+package com.kulagin.realtchecker.model;
 
-import com.kulagin.realtchecker.model.Apartment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

@@ -26,4 +26,8 @@ public class CheckerQueryConfiguration {
   private String walling;
   private String wallingParamName;
   private String url;
+  private String pageParamName;
+  private String priceMinParamName;
+  private String priceMaxParamName;
+  private String currencyParamName;
 }

@@ -37,6 +37,7 @@ public class ApartmentsPrettyPrinter {
         .address(isEmpty(apartment.getLocation().getAddress())? apartment.getLocation().getUserAddress() : apartment.getLocation().getAddress())
         .price(String.valueOf(apartment.getPrice().getAmount()))
         .lastFloor(apartment.getFloor() == apartment.getNumberOfFloors())
+        .area(apartment.getArea())
         .url(apartment.getUrl()).build())).collect(Collectors.toList());
     List<ApartmentPretty> lastFloorOnly = apartmentPretties.stream().filter((apartmentPretty -> apartmentPretty.isLastFloor())).collect(Collectors.toList());
 

@@ -1,6 +1,5 @@
 package com.kulagin.realtchecker.model;
 
-import com.kulagin.realtchecker.ApartmentsCompareItem;
 import lombok.Getter;
 import lombok.Setter;
 

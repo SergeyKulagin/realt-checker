@@ -3,6 +3,7 @@ package com.kulagin.realtchecker;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kulagin.realtchecker.model.Apartment;
+import com.kulagin.realtchecker.model.ApartmentsCompareItem;
 import com.kulagin.realtchecker.model.CompareApartmentResult;
 import com.kulagin.realtchecker.model.Context;
 import lombok.extern.log4j.Log4j2;

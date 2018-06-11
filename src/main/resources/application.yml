@@ -6,6 +6,7 @@ checker:
     boundsRtLatParamName: bounds[rt][lat]
     boundsRtLongParamName: bounds[rt][long]
     wallingParamName: walling[]
+    pageParamName: page
     walling: brick
     boundsLbLat: 53.779963673435276
     boundsLbLong: 27.248840332031254
@@ -13,7 +14,10 @@ checker:
     boundsRtLong: 27.875747680664066
     priceMin: 45250
     priceMax: 60000
+    priceMinParamName: price[min]
+    priceMaxParamName: price[max]
     currency: usd
+    currencyParamName: currency
   store:
     path: e:\projects\home\realtchecker\analysis
 spring:

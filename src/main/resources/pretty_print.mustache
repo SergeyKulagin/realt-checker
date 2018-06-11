@@ -7,9 +7,11 @@
     .table, tr, td {
         border: 1px solid darkgrey;
     }
+
     td {
         padding: 0px 5px;
     }
+
     .last-floor {
         color: red;
     }
@@ -28,6 +30,9 @@
         {{price}}
     </td>
     <td>
+        {{area.total}}/{{area.living}}/{{area.kitchen}}
+    </td>
+    <td>
         <a href="{{url}}" target="_blank">{{url}}</a>
     </td>
 </tr>
@@ -39,21 +44,24 @@
 </h1>
 <table class="table">
 {{#all}}
-    <tr>
-        <td>
-            {{address}}
-        </td>
-        <td>
-            {{price}}
-        </td>
-        <td>
-            <a href="{{url}}" target="_blank">{{url}}</a>
-        </td>
-        <td>
-            {{#lastFloor}}
-            <div class="last-floor">*</div>
-            {{/lastFloor}}
-        </td>
-    </tr>
+<tr>
+    <td>
+        {{address}}
+    </td>
+    <td>
+        {{price}}
+    </td>
+    <td>
+        {{area.total}}/{{area.living}}/{{area.kitchen}}
+    </td>
+    <td>
+        <a href="{{url}}" target="_blank">{{url}}</a>
+    </td>
+    <td>
+        {{#lastFloor}}
+        <div class="last-floor">*</div>
+        {{/lastFloor}}
+    </td>
+</tr>
 {{/all}}
 </table>
