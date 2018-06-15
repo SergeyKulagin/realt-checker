@@ -1,20 +1,20 @@
 Новые квартиры:
 {{#r.newlyCreatedApartments}}
   {{#location.address}}
-{{location.address}} {{floor}}/{{number_of_floors}} {{url}}
+{{location.address}} ({{floor}}|{{numberOfFloors}}) {{price.amount}}{{price.currency}} {{url}}
   {{/location.address}}
   {{^location.address}}
-{{location.userAddress}} {{floor}}/{{number_of_floors}} {{url}}
+{{location.address}} ({{floor}}|{{numberOfFloors}}) {{price.amount}}{{price.currency}} {{url}}
   {{/location.address}}
 {{/r.newlyCreatedApartments}}
 
 Исчезнувшие квартиры:
 {{#r.disappearedApartments}}
   {{#location.address}}
-{{location.address}} {{floor}}/{{number_of_floors}} {{url}}
+{{location.address}} ({{floor}}|{{numberOfFloors}}) {{price.amount}}{{price.currency}} {{url}}
   {{/location.address}}
   {{^location.address}}
-{{location.userAddress}} {{floor}}/{{number_of_floors}} {{url}}
+{{location.address}} ({{floor}}|{{numberOfFloors}}) {{price.amount}}{{price.currency}} {{url}}
   {{/location.address}}
 {{/r.disappearedApartments}}
 
