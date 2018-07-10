@@ -32,12 +32,14 @@ public class ApartmentsLoader {
           .queryParam(queryConfiguration.getBoundsLbLongParamName(), queryConfiguration.getBoundsLbLong())
           .queryParam(queryConfiguration.getBoundsRtLatParamName(), queryConfiguration.getBoundsRtLat())
           .queryParam(queryConfiguration.getBoundsRtLongParamName(), queryConfiguration.getBoundsRtLong())
-          .queryParam(queryConfiguration.getWallingParamName(), queryConfiguration.getWalling())
+          .queryParam(queryConfiguration.getWallingParamName(), queryConfiguration.getWalling().split(","))
           .queryParam(queryConfiguration.getPageParamName(), page)
           .queryParam(queryConfiguration.getPriceMinParamName(), queryConfiguration.getPriceMin())
           .queryParam(queryConfiguration.getPriceMaxParamName(), queryConfiguration.getPriceMax())
           .queryParam(queryConfiguration.getCurrencyParamName(), queryConfiguration.getCurrency())
           .build().toUriString();
+
+      log.info("Request data, uri is {})", uri);
       ResponseEntity<Result> response = restTemplate.getForEntity(
           uri,
           Result.class
