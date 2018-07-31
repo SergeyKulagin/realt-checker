@@ -18,6 +18,9 @@ checker:
     priceMaxParamName: price[max]
     currency: usd
     currencyParamName: currency
+    realtby:
+      search_hash:
+
   store:
     path: e:\projects\home\realtchecker\analysis
 spring:
@@ -40,3 +43,5 @@ cron:
 jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
+server:
+  port: 8098

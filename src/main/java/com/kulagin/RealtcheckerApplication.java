@@ -1,6 +1,7 @@
 package com.kulagin;
 
 import com.kulagin.realtchecker.*;
+import com.kulagin.realtchecker.impl.ApartmentsLoaderOnliner;
 import com.kulagin.realtchecker.model.Apartment;
 import com.kulagin.realtchecker.model.Context;
 import lombok.extern.log4j.Log4j2;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -26,7 +26,7 @@ public class RealtcheckerApplication implements CommandLineRunner{
   @Autowired
   private ApartmentInitialContextLoader contextLoader;
   @Autowired
-  private ApartmentsLoader aparmentsLoader;
+  private ApartmentsLoaderOnliner aparmentsLoader;
   @Autowired
   private ApartmentsSorter apartmentsSorter;
   @Autowired
