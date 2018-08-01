@@ -64,7 +64,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
 
         final Document htmlPage = Jsoup.parse(bos.toString("UTF-8"));
         Elements flatItems = htmlPage.select(".bd-table-item");
-        if (page == 1 || flatItems.isEmpty()) {
+        if (flatItems.isEmpty()) {
           break;
         }
         for (Element flatItem : flatItems) {
