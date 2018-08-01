@@ -26,7 +26,7 @@ public class RealtcheckerApplication implements CommandLineRunner{
   @Autowired
   private ApartmentInitialContextLoader contextLoader;
   @Autowired
-  private ApartmentsLoaderOnliner aparmentsLoader;
+  private ApartmentsLoader aparmentsLoader;
   @Autowired
   private ApartmentsSorter apartmentsSorter;
   @Autowired
@@ -54,7 +54,7 @@ public class RealtcheckerApplication implements CommandLineRunner{
     runCheck();
   }
 
-  private void runCheck(){
+  private void runCheck() {
     final Context context = contextLoader.loadContext();
     final List<Apartment> apartmentList = aparmentsLoader.load();
     context.setApartments(apartmentList);

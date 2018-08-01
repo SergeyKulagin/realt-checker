@@ -8,10 +8,12 @@ import com.kulagin.realtchecker.model.CompareApartmentResult;
 import com.kulagin.realtchecker.model.Context;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -50,6 +52,10 @@ public class ApartmentsComparer {
 
 
   private List<Apartment> loadPrevious(Context context) {
+    //no previous data exist, return empty list
+    if(StringUtils.isEmpty(context.getLastJsonReportPath())){
+      return Collections.emptyList();
+    }
     ObjectMapper objectMapper = new ObjectMapper();
     try (FileInputStream fis = new FileInputStream(context.getLastJsonReportPath().toFile())) {
       List<Apartment> apartments = objectMapper.readValue(fis, new TypeReference<List<Apartment>>() {

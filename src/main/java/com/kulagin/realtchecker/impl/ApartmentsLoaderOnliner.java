@@ -1,5 +1,6 @@
 package com.kulagin.realtchecker.impl;
 
+import com.kulagin.realtchecker.ApartmentsLoader;
 import com.kulagin.realtchecker.CheckerQueryConfiguration;
 import com.kulagin.realtchecker.model.Apartment;
 import com.kulagin.realtchecker.model.Result;
@@ -18,13 +19,14 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 @Component
 @Profile("onliner")
 @Log4j2
-public class ApartmentsLoaderOnliner {
+public class ApartmentsLoaderOnliner implements ApartmentsLoader {
   private final CheckerQueryConfiguration queryConfiguration;
 
   public ApartmentsLoaderOnliner(CheckerQueryConfiguration checkerQueryConfiguration) {
     this.queryConfiguration = checkerQueryConfiguration;
   }
 
+  @Override
   public List<Apartment> load() {
     log.info("Loading apartments with the following configuration {}", queryConfiguration);
     final RestTemplate restTemplate = new RestTemplate();

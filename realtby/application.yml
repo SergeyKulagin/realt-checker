@@ -1,6 +1,6 @@
 checker:
   query:
-    url: https://pk.api.onliner.by/search/apartments
+    url: https://realt.by/sale/flats/
     boundsLbLatParamName: bounds[lb][lat]
     boundsLbLongParamName: bounds[lb][long]
     boundsRtLatParamName: bounds[rt][lat]
@@ -19,10 +19,10 @@ checker:
     currency: usd
     currencyParamName: currency
     realtby:
-      search_hash: eJxtjssOgyAURL8G1jzEwsKFyn8QCtdqapX4SNO/L9BEk8bNzGRO5uZu83syk30BEs04PKPpmEi0CmmCVJu0kVk10hRJmnONwzK4tHqkTVXwoxhzUUrcz/sKZvuE1P5fbtpLTg9eX3J28qwUmxW2PUS0gDMBFhPs7yVOTtangt2FLCxI5ZXwHbPO+g5uUpQAvLAEvhFQS9w=
+      search_hash: eJxtzkEOgyAQQNHTwBqQsbjooug9CMJYTZpKENP09iJtdOOGyfyXSUjz520mT0Ajge4OnAka4uTypp8lyeoIrxJqRcd5XdCkb8D/YR5sN9IxottL54c/Ll2cXl5OzYJpDZkiOhMwmmB/XwJ22rgH0YOSFlXjG/CDsM76AW8KasRKWoYbLmFDCQ==
 
   store:
-    path: e:\projects\home\realtchecker\analysis
+    path: e:\projects\home\realtchecker\realtby\analysis
 spring:
   mail:
     debug: true
