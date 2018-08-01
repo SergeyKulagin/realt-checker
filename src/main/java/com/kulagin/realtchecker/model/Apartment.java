@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -27,8 +26,9 @@ import lombok.Getter;
     "url",
     "auction_bid"
 })
-@Getter
+@Data
 @Builder
+@AllArgsConstructor
 public class Apartment {
 
     @JsonProperty("id")

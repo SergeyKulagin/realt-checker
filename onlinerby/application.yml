@@ -7,23 +7,25 @@ checker:
     boundsRtLongParamName: bounds[rt][long]
     wallingParamName: walling[]
     pageParamName: page
-    walling: brick
+    walling: brick,monolith
     boundsLbLat: 53.779963673435276
     boundsLbLong: 27.248840332031254
     boundsRtLat: 54.01543502648378
     boundsRtLong: 27.875747680664066
-    priceMin: 45250
-    priceMax: 68000
+    priceMin: 44000
+    priceMax: 65000
     priceMinParamName: price[min]
     priceMaxParamName: price[max]
     currency: usd
     currencyParamName: currency
-    realtby:
-      search_hash: eJxtjssOgyAURL8G1jzEwsKFyn8QCtdqapX4SNO/L9BEk8bNzGRO5uZu83syk30BEs04PKPpmEi0CmmCVJu0kVk10hRJmnONwzK4tHqkTVXwoxhzUUrcz/sKZvuE1P5fbtpLTg9eX3J28qwUmxW2PUS0gDMBFhPs7yVOTtangt2FLCxI5ZXwHbPO+g5uUpQAvLAEvhFQS9w=
-
   store:
-    path: e:\projects\home\realtchecker\analysis
+    path: e:\projects\home\realtchecker\onlinerby\analysis
+  email:
+    header:
+      prefix: onliner.by
 spring:
+  profiles:
+    active: onliner
   mail:
     debug: true
     host: smtp.gmail.com
@@ -44,4 +46,4 @@ jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
 server:
-  port: 8099
+  port: 8098

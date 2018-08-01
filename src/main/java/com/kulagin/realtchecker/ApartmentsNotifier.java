@@ -22,6 +22,8 @@ public class ApartmentsNotifier {
   private ApartmentsPrettyPrinter printer;
   @Value("${spring.mail.to}")
   private String to;
+  @Value("${checker.email.header.prefix}")
+  private String emailPrefix;
 
   public void notify(Context context) {
     log.info("Notify about changes in the flats");
@@ -32,11 +34,11 @@ public class ApartmentsNotifier {
       helper.setTo(to);
 
       if (context.getCompareApartmentResult().hasChanges()) {
-        helper.setSubject("[REALT CHANGES]");
+        helper.setSubject(emailPrefix + " - [REALT CHANGES]");
         log.info("Changes in the flats were detected => notify about them");
         helper.setText(printer.printNotificationBody(context));
       } else {
-        helper.setSubject("[REPORT]");
+        helper.setSubject(emailPrefix + " - [REPORT]");
         log.info("No changes were detected => notify withing the report only");
         helper.setText("No changes were detected. Please check the report.");
       }

@@ -23,7 +23,12 @@ checker:
 
   store:
     path: e:\projects\home\realtchecker\realtby\analysis
+  email:
+    header:
+      prefix: realt.by
 spring:
+  profiles:
+    active: realt-by
   mail:
     debug: true
     host: smtp.gmail.com
