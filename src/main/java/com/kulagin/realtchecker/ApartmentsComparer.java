@@ -25,7 +25,7 @@ public class ApartmentsComparer {
     log.info("Compare old and new apartments lists");
     final List<Apartment> currentApartments = context.getApartments();
     final List<Apartment> previousApartments = loadPrevious(context);
-    final Map<Integer, Apartment> previousApartmentsMap = previousApartments.stream().collect(Collectors.toMap((a -> a.getId()), apartment -> apartment));
+    final Map<Integer, Apartment> previousApartmentsMap = previousApartments.stream().collect(Collectors.toMap((a -> a.getId()) , apartment -> apartment, ((u,v)-> u)));
     CompareApartmentResult compareApartmentResult = new CompareApartmentResult();
     final List<Apartment> newlyCreatedApartments = new ArrayList<>();
     final List<ApartmentsCompareItem> changedApartments = new ArrayList<>();
