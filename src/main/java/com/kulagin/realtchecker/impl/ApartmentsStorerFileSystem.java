@@ -45,7 +45,7 @@ public class ApartmentsStorerFileSystem implements ApartmentsStorer {
 
       try {
         // optionally store to mongo
-        apartmentsStorer.store(context);
+        //apartmentsStorer.store(context);
       } catch (Exception e) {
         e.printStackTrace();
       }

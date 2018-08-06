@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kulagin.realtchecker.model.Apartment;
 import com.kulagin.realtchecker.model.MongoApartments;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Sorts;
 import lombok.AllArgsConstructor;
+import org.bson.Document;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +29,8 @@ public class ApartmentRepository {
     final MongoApartments mongoApartments = new MongoApartments();
     mongoApartments.setApartments(apartments);
     try {
-      apartmentsCollection.insertOne(objectMapper.writeValueAsString(mongoApartments));
+
+      apartmentsCollection.insertOne(Document.parse(objectMapper.writeValueAsString(mongoApartments)));
     } catch (JsonProcessingException e) {
       throw new RuntimeException(e);
     }
