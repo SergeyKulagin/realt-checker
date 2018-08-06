@@ -40,6 +40,9 @@ spring:
     username: kulaginsp
     password: ENC(gJtATA3b7wFTA7F5Kluyr9fjBFD/NFFWS27r5wNRLAw=)
     to: kulaginsp@gmail.com
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/realtchecker
 cron:
   check-schedule: 0 0 8-22 * * ?
 jasypt:

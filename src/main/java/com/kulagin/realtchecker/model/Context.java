@@ -11,9 +11,9 @@ import java.util.List;
 @ToString
 public class Context {
   private Date date;
+  private List<Apartment> previousApartments;
   private List<Apartment> apartments;
   private String htmlReportPath;
-  private Path lastJsonReportPath;
 
   private CompareApartmentResult compareApartmentResult;
 }
