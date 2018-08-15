@@ -1,4 +1,6 @@
 /target/
+/notifications/target/
+/core/target
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###

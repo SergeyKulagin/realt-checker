@@ -39,7 +39,7 @@ spring:
           auth: true
     username: kulaginsp
     password: ENC(gJtATA3b7wFTA7F5Kluyr9fjBFD/NFFWS27r5wNRLAw=)
-    to: kulaginsp@gmail.com
+    to: kulaginsp@gmail.com,kulaginatm@gmail.com
   data:
     mongodb:
       uri: mongodb://localhost:27017/realtchecker

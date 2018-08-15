@@ -21,7 +21,7 @@ public class ApartmentsNotifier {
   @Autowired
   private ApartmentsPrettyPrinter printer;
   @Value("${spring.mail.to}")
-  private String to;
+  private String[] to;
   @Value("${checker.email.header.prefix}")
   private String emailPrefix;
 
