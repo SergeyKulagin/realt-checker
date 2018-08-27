@@ -1,5 +1,6 @@
 package com.kulagin.realtchecker.core.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 

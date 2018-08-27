@@ -49,4 +49,4 @@ jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
 server:
-  port: 8099
+  port: 8198

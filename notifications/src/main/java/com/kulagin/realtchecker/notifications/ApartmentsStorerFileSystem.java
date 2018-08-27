@@ -1,14 +1,13 @@
-package com.kulagin.realtchecker.core.impl;
+package com.kulagin.realtchecker.notifications;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kulagin.realtchecker.core.ApartmentsStorer;
-import com.kulagin.realtchecker.core.FileUtil;
 import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.Context;
+import com.kulagin.realtchecker.notifications.util.FileUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -20,7 +19,6 @@ import java.util.List;
 
 @Component
 @Log4j2
-@Qualifier("filesystem")
 @AllArgsConstructor
 public class ApartmentsStorerFileSystem implements ApartmentsStorer {
 

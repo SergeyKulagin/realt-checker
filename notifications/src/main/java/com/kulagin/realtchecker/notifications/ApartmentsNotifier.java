@@ -1,4 +1,4 @@
-package com.kulagin.realtchecker.core;
+package com.kulagin.realtchecker.notifications;
 
 import com.kulagin.realtchecker.core.model.Context;
 import lombok.extern.log4j.Log4j2;

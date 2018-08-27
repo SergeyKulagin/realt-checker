@@ -1,14 +1,11 @@
-package com.kulagin.realtchecker.core.impl;
+package com.kulagin.realtchecker.statistics;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kulagin.realtchecker.core.ApartmentsStorer;
 import com.kulagin.realtchecker.core.model.Context;
-import com.kulagin.realtchecker.core.repo.ApartmentRepository;
+import com.kulagin.realtchecker.statistics.repo.ApartmentRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Qualifier("mongo")
 @Component
 @AllArgsConstructor
 public class ApartmentsStorerMongo implements ApartmentsStorer {

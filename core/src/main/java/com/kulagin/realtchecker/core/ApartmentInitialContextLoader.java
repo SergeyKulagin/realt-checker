@@ -1,21 +1,18 @@
 package com.kulagin.realtchecker.core;
 
 import com.kulagin.realtchecker.core.model.Context;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 @Log4j2
+@AllArgsConstructor
 public class ApartmentInitialContextLoader {
 
   private final ApartmentsStorer apartmentsStorer;
-
-  public ApartmentInitialContextLoader(@Qualifier("filesystem")ApartmentsStorer apartmentsStorer) {
-    this.apartmentsStorer = apartmentsStorer;
-  }
 
   public Context loadContext() {
     final Context context = new Context();

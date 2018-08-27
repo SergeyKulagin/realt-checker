@@ -1,0 +1,12 @@
+checker:
+  query:
+    url: https://realt.by/sale/flats/
+    realtby:
+      search_hash: eJxtzkEOgyAQQNHTwBqQsbjooug9CMJYTZpKENP09iJtdOOGyfyXSUjz520mT0Ajge4OnAka4uTypp8lyeoIrxJqRcd5XdCkb8D/YR5sN9IxottL54c/Ll2cXl5OzYJpDZkiOhMwmmB/XwJ22rgH0YOSFlXjG/CDsM76AW8KasRKWoYbLmFDCQ==
+spring:
+  profiles:
+    active: realt-by
+cron:
+  check-schedule: 0 0 12,21 * * ?
+server:
+  port: 8199

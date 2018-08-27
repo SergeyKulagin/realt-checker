@@ -1,4 +1,4 @@
-package com.kulagin.realtchecker.core;
+package com.kulagin.realtchecker.notifications.util;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;

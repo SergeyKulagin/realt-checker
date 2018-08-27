@@ -27,6 +27,7 @@
 	<modules>
 		<module>core</module>
 		<module>notifications</module>
+		<module>statistics</module>
 	</modules>
 
 </project>

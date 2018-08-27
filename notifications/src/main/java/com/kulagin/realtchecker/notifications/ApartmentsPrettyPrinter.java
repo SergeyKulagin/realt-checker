@@ -1,4 +1,4 @@
-package com.kulagin.realtchecker.core;
+package com.kulagin.realtchecker.notifications;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
@@ -6,6 +6,7 @@ import com.github.mustachejava.MustacheFactory;
 import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.ApartmentPretty;
 import com.kulagin.realtchecker.core.model.Context;
+import com.kulagin.realtchecker.notifications.util.FileUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 

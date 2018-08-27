@@ -1,9 +1,9 @@
-package com.kulagin.realtchecker.core.repo;
+package com.kulagin.realtchecker.statistics.repo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kulagin.realtchecker.core.model.Apartment;
-import com.kulagin.realtchecker.core.model.MongoApartments;
+import com.kulagin.realtchecker.statistics.model.MongoApartments;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Sorts;

@@ -1,1 +1,2 @@
-kulagin\realtchecker\RealtcheckerApplication.class
+com\kulagin\realtchecker\notifications\RealtcheckerApplication.class
+com\kulagin\realtchecker\notifications\util\DefaultErrorHandler.class

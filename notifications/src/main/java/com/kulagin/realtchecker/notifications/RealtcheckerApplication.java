@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.kulagin.realtchecker.core.*;
 import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.Context;
+import com.kulagin.realtchecker.notifications.util.DefaultErrorHandler;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.util.ErrorHandler;
 
 import java.util.List;
 
@@ -35,7 +36,6 @@ public class RealtcheckerApplication implements CommandLineRunner{
   @Autowired
   private ApartmentsSorter apartmentsSorter;
   @Autowired
-  @Qualifier("filesystem")
   private ApartmentsStorer apartmentsStorer;
   @Autowired
   private ApartmentsPrettyPrinter apartmentsPrettyPrinter;
@@ -76,5 +76,10 @@ public class RealtcheckerApplication implements CommandLineRunner{
     final ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     return objectMapper;
+  }
+
+  @Bean
+  public ErrorHandler errorHandler(){
+    return new DefaultErrorHandler();
   }
 }
