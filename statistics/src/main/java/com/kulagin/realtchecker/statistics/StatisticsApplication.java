@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -22,6 +23,7 @@ import java.util.List;
     "com.kulagin.realtchecker.core",
     "com.kulagin.realtchecker.statistics"
 })
+@Import(StatisticsConfig.class)
 @Log4j2
 public class StatisticsApplication implements CommandLineRunner{
   private final ApartmentsLoader apartmentsLoader;

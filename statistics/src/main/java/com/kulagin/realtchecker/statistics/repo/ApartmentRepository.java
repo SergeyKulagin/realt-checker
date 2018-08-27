@@ -28,7 +28,6 @@ public class ApartmentRepository {
     final MongoApartments mongoApartments = new MongoApartments();
     mongoApartments.setApartments(apartments);
     try {
-
       apartmentsCollection.insertOne(Document.parse(objectMapper.writeValueAsString(mongoApartments)));
     } catch (JsonProcessingException e) {
       throw new RuntimeException(e);
