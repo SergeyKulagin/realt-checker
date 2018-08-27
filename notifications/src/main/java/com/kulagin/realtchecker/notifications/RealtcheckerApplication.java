@@ -23,7 +23,11 @@ import java.util.List;
 @SpringBootApplication
 @EnableScheduling
 @Log4j2
-@ComponentScan("com.kulagin.realtchecker.core")
+@ComponentScan({
+    "com.kulagin.realtchecker.core",
+    "com.kulagin.realtchecker.notifications"
+
+})
 public class RealtcheckerApplication implements CommandLineRunner{
 
   @Autowired
