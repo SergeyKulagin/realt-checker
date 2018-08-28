@@ -11,7 +11,11 @@ spring:
       uri: mongodb://localhost:27017/realtchecker
       apartments:
         collection: apartments
+  mvc:
+    view:
+      suffix: jsp
 cron:
   check-schedule: 0 0 12,21 * * ?
 server:
   port: 8199
+debug: true

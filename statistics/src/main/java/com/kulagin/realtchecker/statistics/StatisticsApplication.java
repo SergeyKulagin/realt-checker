@@ -36,7 +36,7 @@ public class StatisticsApplication implements CommandLineRunner{
   @Override
   public void run(String... args) throws Exception {
     // run on start-up
-    loadStatistics();
+    //loadStatistics();
   }
 
 
