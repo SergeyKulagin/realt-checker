@@ -19,6 +19,6 @@ public class ApartmentsStorerMongo implements ApartmentsStorer {
 
   @Override
   public void loadPreviousApartments(Context context) {
-    context.setPreviousApartments(apartmentRepository.getPreviousApartments());
+    throw new UnsupportedOperationException();
   }
 }

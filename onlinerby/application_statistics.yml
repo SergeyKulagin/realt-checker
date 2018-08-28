@@ -24,6 +24,8 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/realtchecker
+      apartments:
+        collection: apartments
 cron:
   check-schedule: 0 0 12,21 * * ?
 server:
