@@ -4,6 +4,8 @@ checker:
     realtby:
       search_hash: eJxtzkEOgyAQQNHTwBqQsbjooug9CMJYTZpKENP09iJtdOOGyfyXSUjz520mT0Ajge4OnAka4uTypp8lyeoIrxJqRcd5XdCkb8D/YR5sN9IxottL54c/Ll2cXl5OzYJpDZkiOhMwmmB/XwJ22rgH0YOSFlXjG/CDsM76AW8KasRKWoYbLmFDCQ==
 spring:
+  mustache:
+    suffix: .html
   profiles:
     active: realt-by
   data:
@@ -11,11 +13,9 @@ spring:
       uri: mongodb://localhost:27017/realtchecker
       apartments:
         collection: apartments
-  mvc:
-    view:
-      suffix: jsp
 cron:
   check-schedule: 0 0 12,21 * * ?
 server:
   port: 8199
+
 debug: true
