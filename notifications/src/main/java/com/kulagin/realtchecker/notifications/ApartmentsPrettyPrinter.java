@@ -1,18 +1,17 @@
 package com.kulagin.realtchecker.notifications;
 
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-import com.github.mustachejava.MustacheFactory;
 import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.ApartmentPretty;
 import com.kulagin.realtchecker.core.model.Context;
 import com.kulagin.realtchecker.notifications.util.FileUtil;
+import com.samskivert.mustache.Mustache;
+import com.samskivert.mustache.Template;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
@@ -23,12 +22,10 @@ import static org.springframework.util.StringUtils.isEmpty;
 
 @Component
 @Log4j2
+@AllArgsConstructor
 public class ApartmentsPrettyPrinter {
   private final FileUtil fileUtil;
-
-  public ApartmentsPrettyPrinter(FileUtil fileUtil) {
-    this.fileUtil = fileUtil;
-  }
+  private final Mustache.Compiler mustacheCompiler;
 
   public void printReport(Context context) {
     List<Apartment> apartmentList = context.getApartments();
@@ -45,12 +42,12 @@ public class ApartmentsPrettyPrinter {
     Map<String, Object> scope = new HashMap<>();
     scope.put("all", apartmentPretties);
     scope.put("lastFloor", lastFloorOnly);
-    MustacheFactory mf = new DefaultMustacheFactory();
-    Mustache mustache = mf.compile("pretty_print.mustache");
+
     try {
+      Template mustacheTemplate = mustacheCompiler.compile(new InputStreamReader(new ClassPathResource("pretty_print.mustache").getInputStream()));
       final Path path = fileUtil.getFilePath(context.getDate(), "html");
       context.setHtmlReportPath(path.toString());
-      mustache.execute(new FileWriter(path.toFile()), scope);
+      mustacheTemplate.execute(scope, new FileWriter(path.toFile()));
     } catch (IOException e) {
       log.error(e);
       throw new RuntimeException(e);
@@ -58,12 +55,17 @@ public class ApartmentsPrettyPrinter {
   }
 
   public String printNotificationBody(Context context) {
-    Map<String, Object> scope = new HashMap<>();
-    scope.put("r", context.getCompareApartmentResult());
-    MustacheFactory mf = new DefaultMustacheFactory();
-    Mustache mustache = mf.compile("email_body.mustache");
-    StringWriter sw = new StringWriter();
-    mustache.execute(sw, scope);
+    StringWriter sw = null;
+    try {
+      Map<String, Object> scope = new HashMap<>();
+      scope.put("r", context.getCompareApartmentResult());
+      Template mustacheTemplate = mustacheCompiler.compile(new InputStreamReader(new ClassPathResource("email_body.mustache").getInputStream()));
+      sw = new StringWriter();
+      mustacheTemplate.execute(scope, sw);
+    } catch (IOException e) {
+      log.error(e);
+      throw new RuntimeException(e);
+    }
     return sw.toString();
   }
 }

@@ -1,7 +1,11 @@
 package com.kulagin.realtchecker.statistics;
 
+import com.samskivert.mustache.Mustache;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.mustache.MustacheEnvironmentCollector;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.index.TextIndexDefinition;
 
@@ -18,6 +22,19 @@ public class StatisticsConfig {
       @Value("${spring.data.mongodb.apartments.collection}") String apartmentsCollectionName) {
     this.mongoTemplate = mongoTemplate;
     this.apartmentsCollectionName = apartmentsCollectionName;
+  }
+
+  @Bean
+  public Mustache.Compiler mustacheCompiler(
+      Mustache.TemplateLoader templateLoader,
+      Environment environment){
+    MustacheEnvironmentCollector collector = new MustacheEnvironmentCollector();
+    collector.setEnvironment(environment);
+    return Mustache
+        .compiler()
+        .defaultValue("")
+        .withLoader(templateLoader)
+        .withCollector(collector);
   }
 
   @PostConstruct

@@ -131,7 +131,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
   }
 
   private Double parsePrice(String price) {
-    return Double.parseDouble(
+    return parseDoubleSilently(
         price
             .replaceAll(" ", "")
             .replaceAll("&nbsp;", "")
