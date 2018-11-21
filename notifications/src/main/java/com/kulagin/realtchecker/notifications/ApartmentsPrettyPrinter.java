@@ -44,7 +44,7 @@ public class ApartmentsPrettyPrinter {
     scope.put("lastFloor", lastFloorOnly);
 
     try {
-      Template mustacheTemplate = mustacheCompiler.compile(new InputStreamReader(new ClassPathResource("pretty_print.mustache").getInputStream()));
+      Template mustacheTemplate = mustacheCompiler.compile(new InputStreamReader(new ClassPathResource("pretty_print.mustache").getInputStream(), "UTF-8"));
       final Path path = fileUtil.getFilePath(context.getDate(), "html");
       context.setHtmlReportPath(path.toString());
       mustacheTemplate.execute(scope, new FileWriter(path.toFile()));
@@ -59,7 +59,7 @@ public class ApartmentsPrettyPrinter {
     try {
       Map<String, Object> scope = new HashMap<>();
       scope.put("r", context.getCompareApartmentResult());
-      Template mustacheTemplate = mustacheCompiler.compile(new InputStreamReader(new ClassPathResource("email_body.mustache").getInputStream()));
+      Template mustacheTemplate = mustacheCompiler.compile(new InputStreamReader(new ClassPathResource("email_body.mustache").getInputStream(), "UTF-8"));
       sw = new StringWriter();
       mustacheTemplate.execute(scope, sw);
     } catch (IOException e) {

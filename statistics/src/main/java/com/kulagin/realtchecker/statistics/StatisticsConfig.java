@@ -24,19 +24,6 @@ public class StatisticsConfig {
     this.apartmentsCollectionName = apartmentsCollectionName;
   }
 
-  @Bean
-  public Mustache.Compiler mustacheCompiler(
-      Mustache.TemplateLoader templateLoader,
-      Environment environment){
-    MustacheEnvironmentCollector collector = new MustacheEnvironmentCollector();
-    collector.setEnvironment(environment);
-    return Mustache
-        .compiler()
-        .defaultValue("")
-        .withLoader(templateLoader)
-        .withCollector(collector);
-  }
-
   @PostConstruct
   public void initIndexes() {
     mongoTemplate

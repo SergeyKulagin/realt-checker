@@ -13,7 +13,7 @@ checker:
     boundsRtLat: 54.01543502648378
     boundsRtLong: 27.875747680664066
     priceMin: 44000
-    priceMax: 65000
+    priceMax: 70000
     priceMinParamName: price[min]
     priceMaxParamName: price[max]
     currency: usd
