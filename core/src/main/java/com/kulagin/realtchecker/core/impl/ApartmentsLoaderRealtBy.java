@@ -5,6 +5,7 @@ import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.Area;
 import com.kulagin.realtchecker.core.model.Location;
 import com.kulagin.realtchecker.core.model.Price;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -31,10 +32,9 @@ import java.util.List;
 @Component
 @Profile("realt-by")
 @Log4j2
+@RequiredArgsConstructor
 public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
-
-  @Value("${checker.query.realtby.search_hash}")
-  private String searchHash;
+  private final RealtBySearchHashProvider realtBySearchHashProvider;
 
   @Value("${checker.query.url}")
   private String baseUrl;
@@ -42,6 +42,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
   @Override
   public List<Apartment> load() {
     final List<Apartment> apartments = new ArrayList<>();
+    final String searchHash = realtBySearchHashProvider.get();
     int page = 0;
     try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
       while (true) {
