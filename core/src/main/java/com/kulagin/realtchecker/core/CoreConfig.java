@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.mustache.MustacheEnvironmentCollec
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class CoreConfig {
@@ -19,5 +20,10 @@ public class CoreConfig {
         .defaultValue("")
         .withLoader(templateLoader)
         .withCollector(collector);
+  }
+
+  @Bean
+  public RestTemplate restTemplate(){
+    return new RestTemplate();
   }
 }

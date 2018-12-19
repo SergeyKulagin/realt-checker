@@ -42,6 +42,7 @@ public class ApartmentsStorerFileSystem implements ApartmentsStorer {
      //no previous data exist, return empty list
     if(StringUtils.isEmpty(lastFilePath)){
       context.setPreviousApartments(Collections.emptyList());
+      return;
     }
     ObjectMapper objectMapper = new ObjectMapper();
     try (FileInputStream fis = new FileInputStream(lastFilePath.toFile())) {

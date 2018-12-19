@@ -4,6 +4,7 @@ import com.kulagin.realtchecker.core.ApartmentsLoader;
 import com.kulagin.realtchecker.core.CheckerQueryConfiguration;
 import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.Result;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
@@ -19,12 +20,10 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 @Component
 @Profile("onliner")
 @Log4j2
+@RequiredArgsConstructor
 public class ApartmentsLoaderOnliner implements ApartmentsLoader {
   private final CheckerQueryConfiguration queryConfiguration;
 
-  public ApartmentsLoaderOnliner(CheckerQueryConfiguration checkerQueryConfiguration) {
-    this.queryConfiguration = checkerQueryConfiguration;
-  }
 
   @Override
   public List<Apartment> load() {

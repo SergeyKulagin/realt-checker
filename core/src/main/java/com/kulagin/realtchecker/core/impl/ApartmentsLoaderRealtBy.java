@@ -36,7 +36,7 @@ import java.util.List;
 public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
   private final RealtBySearchHashProvider realtBySearchHashProvider;
 
-  @Value("${checker.query.url}")
+  @Value("${checker.query.parameters.url}")
   private String baseUrl;
 
   @Override
