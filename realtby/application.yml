@@ -6,12 +6,13 @@ checker:
       search-url: https://realt.by/sale/flats/
     parameters:
       type: count
-      s[price][le]: 73
-      s[price][ge]:
-      s[house_type][e][]: м,к,кб
-      s[town_name][like][0]: Минск
-      pageParamName: page
-      x_uedbflat_pi2[rec_per_page]: 50
+      "[s[price][le]]": 73
+      "[s[price][ge]]": 40
+      "[s[house_type][e][]]": м,к,кб
+      "[s[town_name][like][0]]": Минск
+      "[s[town_id][e]]": 5102
+      "[s[storey][fe]]": storeys
+      "[x_uedbflat_pi2[rec_per_page]]": 50
       eID: tx_uedbcore_mapApi
       tid: 1
       R: 0

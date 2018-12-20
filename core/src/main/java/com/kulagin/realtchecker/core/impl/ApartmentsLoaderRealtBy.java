@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Profile("realt-by")
@@ -85,7 +86,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
         .area(parseArea(flatItem.selectFirst(".pl > span").text()))
         .price(
             Price.builder()
-                .amount(parsePrice(flatItem.selectFirst(".cena > span").attr("data-840")))
+                .amount(parsePrice(Optional.ofNullable(flatItem.selectFirst(".cena > span")).orElse(new Element("empty").attr("data-840", "")).attr("data-840")))
                 .currency("usd")
                 .build()
         )

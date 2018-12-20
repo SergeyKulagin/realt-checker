@@ -4,6 +4,7 @@ import com.kulagin.realtchecker.core.CheckerQueryConfiguration;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,6 +20,7 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class RealtBySearchHashProvider {
     private final RestTemplate restTemplate;
     private final CheckerQueryConfiguration queryConfiguration;
@@ -38,8 +40,9 @@ public class RealtBySearchHashProvider {
         //2. get search hash
         UriComponentsBuilder uriComponentsBuilder = fromHttpUrl(queryParameters.getUrls().get("get-hash-url"));
         uriComponentsBuilder.queryParam("hash", hash);
-        queryParameters.getParameters().forEach((k,v)-> uriComponentsBuilder.queryParam(k,v));
+        queryParameters.getParameters().forEach((k,v)-> uriComponentsBuilder.queryParam(k,v.split(",")));
         final String seachHashUri = uriComponentsBuilder.build().toUriString();
+        log.info("get-hash-url is {}", seachHashUri);
         ResponseEntity<HashSearchResult> hashSearchResultResponse = restTemplate.exchange(seachHashUri, HttpMethod.GET, entity(), HashSearchResult.class);
         HashSearchResult hashSearchResult = hashSearchResultResponse.getBody();
         final String searchForHash =  hashSearchResult.search;
