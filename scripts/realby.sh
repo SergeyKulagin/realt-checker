@@ -1,0 +1,1 @@
+java -jar -Djasypt.encryptor.password=$REALTCHECKER_ENCRYPT_PASS -Dspring.config.location=../realtby/application.yml ../notifications/target/realtchecker-notifications-0.0.1-SNAPSHOT.jar
