@@ -1,7 +1,10 @@
 checker:
   query:
+    urls:
+      page-hash-url: https://realt.by/sale/flats/search/#tabs
+      get-hash-url: https://realt.by/
+      search-url: https://realt.by/sale/flats/
     parameters:
-      url: https://realt.by/sale/flats/
       type: count
       s[price][le]: 73
       s[price][ge]:
@@ -9,6 +12,11 @@ checker:
       s[town_name][like][0]: Минск
       pageParamName: page
       x_uedbflat_pi2[rec_per_page]: 50
+      eID: tx_uedbcore_mapApi
+      tid: 1
+      R: 0
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) snap Chromium/71.0.3578.80 Chrome/71.0.3578.80 Safari/537.36
   store:
     path: ./realtby/analysis
   email:
