@@ -14,10 +14,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.ErrorHandler;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @SpringBootApplication
@@ -30,6 +33,7 @@ import java.util.List;
 })
 public class RealtcheckerApplication implements CommandLineRunner{
 
+  public static final int ADDITIONAL_CHECK_INTERVAL_MINUTES = 5;
   @Autowired
   private Environment environment;
 
@@ -47,6 +51,8 @@ public class RealtcheckerApplication implements CommandLineRunner{
   private ApartmentsNotifier apartmentsNotifier;
   @Autowired
   private ApartmentsComparer apartmentsComparer;
+  @Autowired
+  private TaskScheduler taskScheduler;
 
   public static void main(String[] args) {
     SpringApplication.run(RealtcheckerApplication.class, args);
@@ -67,6 +73,11 @@ public class RealtcheckerApplication implements CommandLineRunner{
   private void runCheck() {
     final Context context = contextLoader.loadContext();
     final List<Apartment> apartmentList = aparmentsLoader.load();
+    if(apartmentList.isEmpty()){
+      log.info("The apartments list is empty, run additional check in {} minuts", ADDITIONAL_CHECK_INTERVAL_MINUTES);
+      taskScheduler.schedule(()-> runCheck(), Instant.now().plus(ADDITIONAL_CHECK_INTERVAL_MINUTES, ChronoUnit.MINUTES));
+      return;
+    }
     context.setApartments(apartmentList);
     apartmentsSorter.sort(context);
     apartmentsStorer.store(context);

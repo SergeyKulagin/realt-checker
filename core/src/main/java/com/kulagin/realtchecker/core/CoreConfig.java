@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.mustache.MustacheEnvironmentCollec
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
@@ -20,6 +22,13 @@ public class CoreConfig {
         .defaultValue("")
         .withLoader(templateLoader)
         .withCollector(collector);
+  }
+
+  @Bean
+  public TaskScheduler taskScheduler(){
+    ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+    taskScheduler.setPoolSize(1);
+    return taskScheduler;
   }
 
   @Bean

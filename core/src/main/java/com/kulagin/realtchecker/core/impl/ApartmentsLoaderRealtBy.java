@@ -50,6 +50,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
         final String url = UriComponentsBuilder
             .fromHttpUrl(baseUrl)
             .queryParam("search", UriUtils.encode(searchHash, Charset.forName("UTF-8")))
+            .queryParam("view", 0)
             .queryParam("page", page)
             .build()
             .toString();
