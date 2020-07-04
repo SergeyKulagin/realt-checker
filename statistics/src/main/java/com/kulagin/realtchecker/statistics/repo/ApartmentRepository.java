@@ -39,8 +39,8 @@ public class ApartmentRepository {
             TextCriteria
                 .forDefaultLanguage()
                 .matchingPhrase(term)
-        )
-        .with(new Sort(Sort.Direction.ASC, "apartment.location.address", "created"));
+        );
+        //.with(Sort.by(Sort.Direction.ASC, "apartment.location.address", "created"));
     return mongoTemplate.find(q, MongoApartment.class, collectionName);
   }
 }

@@ -30,8 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@Profile("realt-by")
+
+//todo enable later
 @Log4j2
 @RequiredArgsConstructor
 public class ApartmentsLoaderRealtBy implements ApartmentsLoader {

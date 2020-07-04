@@ -18,7 +18,6 @@ import java.util.List;
 import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
 @Component
-@Profile("onliner")
 @Log4j2
 @RequiredArgsConstructor
 public class ApartmentsLoaderOnliner implements ApartmentsLoader {

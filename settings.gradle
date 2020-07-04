@@ -1,0 +1,5 @@
+rootProject.name = 'realtchecker'
+
+include 'core'
+include 'notifications'
+include 'statistics'

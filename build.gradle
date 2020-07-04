@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id "io.spring.dependency-management" version "${dependencyManagmentPluginVersion}" apply false
+}
+
+allprojects {
+    group = 'com.kulagin'
+    version = '2'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter"
+        implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation "org.springframework.boot:spring-boot-starter-mustache"
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_11
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}

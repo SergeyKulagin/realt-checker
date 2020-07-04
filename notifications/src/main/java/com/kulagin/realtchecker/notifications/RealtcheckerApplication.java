@@ -6,6 +6,8 @@ import com.kulagin.realtchecker.core.*;
 import com.kulagin.realtchecker.core.model.Apartment;
 import com.kulagin.realtchecker.core.model.Context;
 import com.kulagin.realtchecker.notifications.util.DefaultErrorHandler;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,6 +33,7 @@ import java.util.List;
     "com.kulagin.realtchecker.notifications"
 
 })
+@RequiredArgsConstructor
 public class RealtcheckerApplication implements CommandLineRunner{
 
   public static final int ADDITIONAL_CHECK_INTERVAL_MINUTES = 5;
