@@ -20,7 +20,7 @@ public class FileUtil {
 
   public static final String TIME_PATTERN = "HH.mm.ss";
   public static final String DATE_PATTERN = "dd.MM.yyyy";
-  @Value("${checker.store.path}")
+  //@Value("${checker.store.path}")
   private String basePath;
 
 

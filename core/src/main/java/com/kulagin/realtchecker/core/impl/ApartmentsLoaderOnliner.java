@@ -1,28 +1,27 @@
 package com.kulagin.realtchecker.core.impl;
 
-import com.kulagin.realtchecker.core.ApartmentsLoader;
-import com.kulagin.realtchecker.core.CheckerQueryConfiguration;
-import com.kulagin.realtchecker.core.model.Apartment;
-import com.kulagin.realtchecker.core.model.Result;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Profile;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.kulagin.realtchecker.core.ApartmentsLoader;
+import com.kulagin.realtchecker.core.OnlinerConfigurationProperties;
+import com.kulagin.realtchecker.core.model.Apartment;
+import com.kulagin.realtchecker.core.model.Result;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Component
 @Log4j2
 @RequiredArgsConstructor
 public class ApartmentsLoaderOnliner implements ApartmentsLoader {
-  private final CheckerQueryConfiguration queryConfiguration;
-
+  private final OnlinerConfigurationProperties queryConfiguration;
 
   @Override
   public List<Apartment> load() {

@@ -1,10 +1,7 @@
 package com.kulagin.realtchecker.core.impl;
 
-import com.kulagin.realtchecker.core.CheckerQueryConfiguration;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,14 +13,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Component
 @Slf4j
 public class RealtBySearchHashProvider {
     private final RestTemplate restTemplate;
-    private final CheckerQueryConfiguration queryConfiguration;
     private final QueryParameters queryParameters;
 
     public String get() {

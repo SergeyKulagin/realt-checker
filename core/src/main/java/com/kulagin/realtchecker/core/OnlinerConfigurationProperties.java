@@ -7,11 +7,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "checker.query")
+@ConfigurationProperties(prefix = "service.onliner.query")
 @Getter
 @Setter
 @ToString
-public class CheckerQueryConfiguration {
+public class OnlinerConfigurationProperties {
   private String boundsLbLatParamName;
   private String boundsLbLongParamName;
   private String boundsRtLatParamName;
