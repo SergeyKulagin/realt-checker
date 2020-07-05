@@ -1,12 +1,12 @@
 package com.kulagin.realtchecker.core.impl;
 
-import com.kulagin.realtchecker.core.ApartmentsLoader;
-import com.kulagin.realtchecker.core.model.Apartment;
-import com.kulagin.realtchecker.core.model.Area;
-import com.kulagin.realtchecker.core.model.Location;
-import com.kulagin.realtchecker.core.model.Price;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -17,18 +17,19 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.kulagin.realtchecker.core.ApartmentsLoader;
+import com.kulagin.realtchecker.core.model.Apartment;
+import com.kulagin.realtchecker.core.model.Area;
+import com.kulagin.realtchecker.core.model.Context;
+import com.kulagin.realtchecker.core.model.Location;
+import com.kulagin.realtchecker.core.model.Price;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 
 //todo enable later
@@ -41,7 +42,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
   private String baseUrl;
 
   @Override
-  public List<Apartment> load() {
+  public void load(Context context) {
     final List<Apartment> apartments = new ArrayList<>();
     final String searchHash = realtBySearchHashProvider.get();
     int page = 0;
@@ -78,7 +79,7 @@ public class ApartmentsLoaderRealtBy implements ApartmentsLoader {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    return apartments;
+    context.setApartments(apartments);
   }
 
   private Apartment parseItem(Element flatItem) {

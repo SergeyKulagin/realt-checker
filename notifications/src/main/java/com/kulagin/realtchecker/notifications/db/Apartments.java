@@ -2,7 +2,6 @@ package com.kulagin.realtchecker.notifications.db;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

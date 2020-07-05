@@ -7,11 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.ErrorHandler;
 
+import com.kulagin.realtchecker.notifications.bot.TriggerCheckerEvent;
 import com.kulagin.realtchecker.notifications.util.DefaultErrorHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -43,6 +45,7 @@ public class RealtcheckerApplication implements CommandLineRunner {
     }
     
     @Scheduled(cron = "${cron.check-schedule}")
+    @EventListener(TriggerCheckerEvent.class)
     public void runPeriodicalCheck() {
         runCheck();
     }

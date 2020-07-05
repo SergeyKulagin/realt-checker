@@ -1,10 +1,8 @@
 package com.kulagin.realtchecker.core;
 
 
-import java.util.List;
-
-import com.kulagin.realtchecker.core.model.Apartment;
+import com.kulagin.realtchecker.core.model.Context;
 
 public interface ApartmentsLoader {
-  List<Apartment> load();
+  void load(Context context);
 }

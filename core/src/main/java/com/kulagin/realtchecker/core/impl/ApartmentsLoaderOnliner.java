@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import com.kulagin.realtchecker.core.ApartmentsLoader;
 import com.kulagin.realtchecker.core.OnlinerConfigurationProperties;
 import com.kulagin.realtchecker.core.model.Apartment;
+import com.kulagin.realtchecker.core.model.Context;
 import com.kulagin.realtchecker.core.model.Result;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ApartmentsLoaderOnliner implements ApartmentsLoader {
   private final OnlinerConfigurationProperties queryConfiguration;
 
   @Override
-  public List<Apartment> load() {
+  public void load(Context context) {
     log.info("Loading apartments with the following configuration {}", queryConfiguration);
     final RestTemplate restTemplate = new RestTemplate();
     int page = 1;
@@ -54,6 +55,6 @@ public class ApartmentsLoaderOnliner implements ApartmentsLoader {
       }
       page++;
     }
-    return apartments;
+    context.setApartments(apartments);
   }
 }

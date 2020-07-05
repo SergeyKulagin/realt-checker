@@ -31,8 +31,6 @@ public class ApartmentsStorerMongo implements ApartmentsStorer {
         apartmentRepository
                 .findAll(PageRequest.of(0, 1, Sort.by("date").descending()))
                 .get().findFirst()
-                .ifPresent(a -> {
-                    context.setApartments(a.getApartments());
-                });
+                .ifPresent(a -> context.setPreviousApartments(a.getApartments()));
     }
 }
