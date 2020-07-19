@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RealtBySearchHashProvider {
     private final RestTemplate restTemplate;
-    private final QueryParameters queryParameters;
+    private final RealtConfigurationProperties queryParameters;
 
     public String get() {
         //1. get page to get the secret-hash

@@ -4,8 +4,7 @@ plugins {
 }
 
 allprojects {
-    group = 'com.kulagin'
-    version = '2'
+    group = 'sergeykulagin'
 }
 
 subprojects {

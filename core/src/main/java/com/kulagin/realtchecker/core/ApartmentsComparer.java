@@ -19,6 +19,10 @@ public class ApartmentsComparer {
     log.info("Compare old and new apartments lists");
     final List<Apartment> currentApartments = context.getApartments();
     final List<Apartment> previousApartments = context.getPreviousApartments();
+    if(context.getPreviousApartments() == null){
+        log.info("No previous snapshot of data, ignore comparison");
+        return;
+    }
     final Map<Integer, Apartment> previousApartmentsMap = previousApartments.stream().collect(Collectors.toMap((a -> a.getId()) , apartment -> apartment, ((u,v)-> u)));
     CompareApartmentResult compareApartmentResult = new CompareApartmentResult();
     final List<Apartment> newlyCreatedApartments = new ArrayList<>();

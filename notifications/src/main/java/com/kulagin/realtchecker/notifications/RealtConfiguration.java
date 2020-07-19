@@ -5,28 +5,26 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.stereotype.Component;
 
 import com.kulagin.realtchecker.core.ApartmentsComparer;
 import com.kulagin.realtchecker.core.ApartmentsSorter;
 import com.kulagin.realtchecker.core.SourceType;
-import com.kulagin.realtchecker.core.impl.ApartmentsLoaderOnliner;
+import com.kulagin.realtchecker.core.impl.ApartmentsLoaderRealtBy;
 import com.kulagin.realtchecker.notifications.db.ApartmentsStorerMongo;
 
 import lombok.RequiredArgsConstructor;
 
+@Configuration
 @RequiredArgsConstructor
-@Component
-public class OnlinerConfiguration {
+public class RealtConfiguration {
     private final MongoTemplate mongoTemplate;
     
     @Bean
-    @ConditionalOnProperty(value = "service.onliner.enabled", havingValue = "true", matchIfMissing = true)
-    public Checker onlinerChecker(
-            ApartmentsLoaderOnliner apartmentsLoader,
+    @ConditionalOnProperty(value = "service.realtby.enabled", havingValue = "true", matchIfMissing = true)
+    public Checker realtChecker(
+            ApartmentsLoaderRealtBy apartmentsLoader,
             ApartmentsSorter apartmentsSorter,
-            @Qualifier("apartmentsStorerOnliner")
-            ApartmentsStorerMongo apartmentsStorer,
+            @Qualifier("apartmentsStorerRealt") ApartmentsStorerMongo apartmentsStorer,
             ApartmentsPrettyPrinterHTML apartmentsPrettyPrinter,
             ApartmentsNotifier apartmentsNotifier,
             ApartmentsComparer apartmentsComparer) {
@@ -41,7 +39,7 @@ public class OnlinerConfiguration {
     }
     
     @Bean
-    public ApartmentsStorerMongo apartmentsStorerOnliner() {
-        return new ApartmentsStorerMongo(mongoTemplate, SourceType.ONLINER);
+    public ApartmentsStorerMongo apartmentsStorerRealt() {
+        return new ApartmentsStorerMongo(mongoTemplate, SourceType.REALTBY);
     }
 }

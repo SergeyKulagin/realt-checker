@@ -17,7 +17,7 @@ public class Checker {
     private final ApartmentsLoader apartmentsLoader;
     private final ApartmentsSorter apartmentsSorter;
     private final ApartmentsStorer apartmentsStorer;
-    private final ApartmentsPrettyPrinter apartmentsPrettyPrinter;
+    private final ApartmentsPrettyPrinterHTML apartmentsPrettyPrinter;
     private final ApartmentsNotifier apartmentsNotifier;
     private final ApartmentsComparer apartmentsComparer;
     
@@ -27,6 +27,7 @@ public class Checker {
         apartmentsSorter.sort(context);
         apartmentsStorer.store(context);
         apartmentsComparer.compare(context);
+        apartmentsPrettyPrinter.makePrettyPrint(context);
         apartmentsNotifier.notify(context);
     }
 }

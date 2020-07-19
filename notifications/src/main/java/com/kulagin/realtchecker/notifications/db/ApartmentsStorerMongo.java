@@ -4,33 +4,40 @@ import java.time.Instant;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 
 import com.kulagin.realtchecker.core.ApartmentsStorer;
+import com.kulagin.realtchecker.core.SourceType;
 import com.kulagin.realtchecker.core.model.Context;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Component
 public class ApartmentsStorerMongo implements ApartmentsStorer {
-    private final ApartmentRepository apartmentRepository;
+    private final MongoTemplate mongoTemplate;
+    private final SourceType sourceType;
     
     @Override
     public void store(Context context) {
-        apartmentRepository.save(Apartments
-                .builder()
-                .apartments(context.getApartments())
-                .date(Instant.now())
-                .build()
-        );
+        mongoTemplate.save(
+                Apartments
+                        .builder()
+                        .apartments(context.getApartments())
+                        .date(Instant.now())
+                        .build(), sourceType.getApartmentsCollection());
     }
     
     @Override
     public void loadPreviousApartments(Context context) {
-        apartmentRepository
-                .findAll(PageRequest.of(0, 1, Sort.by("date").descending()))
-                .get().findFirst()
+        mongoTemplate
+                .query(Apartments.class)
+                .inCollection(sourceType.getApartmentsCollection())
+                .matching(
+                        new BasicQuery("{}")
+                                .with(PageRequest.of(0, 1, Sort.by("date").descending()))
+                )
+                .first()
                 .ifPresent(a -> context.setPreviousApartments(a.getApartments()));
     }
 }

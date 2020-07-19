@@ -1,5 +1,7 @@
 package com.kulagin.realtchecker.core;
 
+import java.time.Duration;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "service.onliner.query")
+@ConfigurationProperties(prefix = "service.onliner")
 @Getter
 @Setter
 @ToString
@@ -30,4 +32,5 @@ public class OnlinerConfigurationProperties {
   private String priceMinParamName;
   private String priceMaxParamName;
   private String currencyParamName;
+  private Duration queryDelay;
 }
